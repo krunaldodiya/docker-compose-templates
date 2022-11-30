@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Tokyo
+      - AUTO_UPDATE=true #optional
+    volumes:
+      - prowlarr_config:/config
+      - prowlarr_downloads:/downloads
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+volumes:
+  prowlarr_config:
+    driver: local
+  prowlarr_downloads:
+    driver: local
